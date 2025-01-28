@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myfirstpod
+  namespace: mycustomnamespace
+  labels: 
+    app: dockerwebapp
+spec:
+  containers:
+  - name: myfirstcontainer
+    image: amitkumar0441/dockerwebapp:latest
+    imagePullPolicy: Always
+    ports:
+    - containerPort: 80
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: myfirstservice
+  namespace: mycustomnamespace
+spec:
+  selector:
+    app: dockerwebapp
+  ports:
+    - protocol: TCP
+      port: 80           # Service port
+      targetPort: 80     # Container port
+      nodePort: 30001    # NodePort for external access
+  type: NodePort
