@@ -1,3 +1,8 @@
 1) # to scale replicas :- kubectl scale deployment myfirstdeployment --replicas=3
 
 2) # to rollback :- kubectl rollout undo deployment myfirstdeployment --to-revision=1
+
+3) # to deep info of pods :- kubectl get pods -o wide 
+
+4) volume concept :-
+   persistentvolume- persistentvolumeclaim - attach persistentvolumeclaim with deployment.

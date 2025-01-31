@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "mydeployment"
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: webapp
+  template:
+    metadata:
+      name: "heliapods"
+      labels:
+        app: webapp
+    spec:
+      containers:
+      - name: "mycontainer"
+        image: amitkumar0441/jenkins-ansible-docker:7
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: my-persistent-volume
+          mountPath: /mnt/data
+      volumes:
+      - name: my-persistent-volume
+        persistentVolumeClaim:
+          claimName: my-persistent-volume-claim
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: "myservice"
+spec:
+  selector:
+    app: webapp
+  ports:
+    - protocol: TCP
+      port: 80           # Service port
+      targetPort: 80     # Container port
+      nodePort: 30053    # NodePort for external access (check range)
+  type: NodePort
