@@ -4,5 +4,13 @@
 
 3) # to deep info of pods :- kubectl get pods -o wide 
 
-4) volume concept :-
+4) # volume concept :-
    persistentvolume- persistentvolumeclaim - attach persistentvolumeclaim with deployment.
+
+5) # to get persistent volume :- kubectl get pv 
+ 
+6) # to get persistent volume claim :- kubectl get pvc 
+
+7) # ingress in kubernetes :- used in microservices architecture, One entry point instead of multiple external IP
+
+8) # 
