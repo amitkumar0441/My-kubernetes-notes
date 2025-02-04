@@ -13,4 +13,12 @@
 
 7) # ingress in kubernetes :- used in microservices architecture, One entry point instead of multiple external IP
 
-8) # 
+8) # we create deployment for stateless application which doesn't need persistent volume like :- frontend application 
+
+9) # we use statefulsets for stateful applications which required persistent volume like :- mysql and monogodb and databases.
+     jitne replicas banege utni separate storage banage pods ke liye. har ek pod ko unique identity bhi deta hai. 
+     Yes, Rolling Updates are possible in StatefulSets
+
+10) # Headless service for statefulsets.- no cluster ip only for internal use. 
+
+11) # kubectl get statefulsets

@@ -1,0 +1,53 @@
+# StatefulSet:-
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: firststatefulset
+  namespace: default  # Ensure it's in the same namespace as the Service
+spec:
+  serviceName: mysql  
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+      - name: mysqlcontainer
+        image: mysql:latest
+        ports:
+        - containerPort: 3306
+        env:  
+        - name: MYSQL_ROOT_PASSWORD
+          value: "1234"
+        volumeMounts:
+        - name: mysql-data
+          mountPath: /var/lib/mysql  
+
+  volumeClaimTemplates:
+  - metadata:
+      name: mysql-data
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 1Gi
+
+---
+# Headless Service:-
+apiVersion: v1 
+kind: Service 
+metadata: 
+  name: mysql
+  namespace: default  # Ensure consistency
+spec:
+  clusterIP: None  
+  selector:
+    app: mysql 
+  ports:
+    - name: mysql 
+      port: 3306
+      targetPort: 3306
