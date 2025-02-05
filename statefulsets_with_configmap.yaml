@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mycustomstatefulsets
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: mysql
+  serviceName: mycustomservice
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+      - name: mysqlcontainer
+        image: mysql:latest
+        ports:
+        - containerPort: 3306
+        env: 
+        - name: MYSQL_ROOT_PASSWORD 
+          valueFrom:
+            configMapKeyRef: 
+              name: mysql-configmap
+              key: MYSQL_ROOT_PASSWORD  
+        - name: MYSQL_DATABASE
+          valueFrom:
+            configMapKeyRef: 
+              name: mysql-configmap
+              key: MYSQL_DATABASE  # Fixed: Removed extra space
+        volumeMounts:
+        - name: mycustomvolume
+          mountPath: /var/lib/mysql
+  volumeClaimTemplates:
+  - metadata:
+      name: mycustomvolume
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 1Gi
+
+--- 
+apiVersion: v1
+kind: Service
+metadata:
+  name: mycustomservice
+  namespace: default 
+spec:
+  clusterIP: None  # Headless service
+  selector:
+    app: mysql
+  ports:
+  - name: mysql
+    port: 3306
+    targetPort: 3306
