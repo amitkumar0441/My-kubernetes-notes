@@ -21,4 +21,6 @@
 
 10) # Headless service for statefulsets.- no cluster ip only for internal use. 
 
-11) # kubectl get statefulsets
+11) # kubectl get statefulsets 
+
+12) # Resource Quota :- Requests and limits :- Resource means minimum and limit means maximum, basically we add two things are :- cpu and memory. 

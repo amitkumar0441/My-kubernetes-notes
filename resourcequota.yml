@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "cloudchamppod"
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: pythonapp
+  template:
+    metadata:
+      name: "pythonapp"
+      labels:
+        app: pythonapp 
+    spec:
+      containers:
+      - name: "cloudchampcontainer"
+        image: amitkumar0441/cloudchampmonitoring_app:4
+        ports:
+        - containerPort: 5000
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        volumeMounts:
+        - name: my-persistent-volume
+          mountPath: /mnt/data
+      volumes:
+      - name: my-persistent-volume
+        persistentVolumeClaim:
+          claimName: my-persistent-volume-claim
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: "myservice"
+spec:
+  selector:
+    app: pythonapp 
+  ports:
+    - protocol: TCP
+      port: 5000          # Service port
+      targetPort: 5000   # Container port
+      nodePort: 30053    # NodePort for external access (check range)
+  type: NodePort
