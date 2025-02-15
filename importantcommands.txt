@@ -24,3 +24,11 @@
 11) # kubectl get statefulsets 
 
 12) # Resource Quota :- Requests and limits :- Resource means minimum and limit means maximum, basically we add two things are :- cpu and memory. 
+
+13) # argocd :- continuous delievery to kubernetes, used with git and kubernetes. 
+
+14) # kubectl patch command :- for modify already running existing manifest file , like :- service.yaml 
+
+15) # kubectl port-forward svc/servicename 5000:5000 --address=0.0.0.0 &   - only for Nodeport type. 
+
+
