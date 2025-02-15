@@ -31,6 +31,18 @@
 
 15) # kubectl port-forward svc/servicename 5000:5000 --address=0.0.0.0 &   - only for Nodeport type. 
 
-16) # 
+16) # In the case of argocd, you have to delete application in order to delete all components. 
+
+17) # Taint and Tolerations :-
+   first apiserver send request to scheduler to schedule pods on worker node. 
+   Taint :- by using it we can prevent scheduling of pod on specific worker node but if i define tolerations then it overshadow taint. 
+   Interview answer :- bydefault control plane is tainted 
+
+18) # kubectl taint nodes <node-name> key=value:NoSchedule   - in order to set tainted node 
+
+19) # kubectl taint nodes <node-name> key=value:NoSchedule-     - in order to remove from tainted 
+
+
+
 
 
