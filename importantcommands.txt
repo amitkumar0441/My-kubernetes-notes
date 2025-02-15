@@ -31,4 +31,6 @@
 
 15) # kubectl port-forward svc/servicename 5000:5000 --address=0.0.0.0 &   - only for Nodeport type. 
 
+16) # 
+
 
