@@ -44,13 +44,19 @@
 
 
 20) # Metric server :- in order to get pod how much resource is  consuming. 
-      metric server create karo kube-system namespace ke liye.  - metric server ke liye deployment bante hai. 
+      metric server ka pod create karo kube-system namespace ke liye.:-
+     --- kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+     --- kubectl get pods -n kube-system
+
       kubectl top node :- to see metrics. 
+      metric server should be configured for autoscaling purpose for pod. 
 
 21) # Autoscaling in kubernetes :- HPA - Horizontal pod autoscaling , VPA :- vertical horizontal autoscaling 
       HPA :- basically replicas bante rehte hai automatically jab bhi metrics trigeer hota hai 
-      VPA :- pod ke resources increase hote rehte hai jab bhi traffic badta rehata hai, but VPA only used for stateful applications means for databases. 
+      VPA :- pod ke resources increase hote rehte hai jab bhi traffic badta rehata hai, but VPA only used for stateful applications means for databases.
+      Once HPA is applied, the replicas in the Deployment is no longer fixed. Kubernetes will scale based on the defined minReplicas and maxReplicas in HPA. 
 
-      a) create hpa manifest file and apply it. 
+      a) create a seperate namespace for hpa purpose.
+      b) create hpa manifest file and apply it. 
 
 22) # 
