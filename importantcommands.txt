@@ -43,6 +43,14 @@
 19) # kubectl taint nodes <node-name> key=value:NoSchedule-     - in order to remove from tainted 
 
 
+20) # Metric server :- in order to get pod how much resource is  consuming. 
+      metric server create karo kube-system namespace ke liye.  - metric server ke liye deployment bante hai. 
+      kubectl top node :- to see metrics. 
 
+21) # Autoscaling in kubernetes :- HPA - Horizontal pod autoscaling , VPA :- vertical horizontal autoscaling 
+      HPA :- basically replicas bante rehte hai automatically jab bhi metrics trigeer hota hai 
+      VPA :- pod ke resources increase hote rehte hai jab bhi traffic badta rehata hai, but VPA only used for stateful applications means for databases. 
 
+      a) create hpa manifest file and apply it. 
 
+22) # 
