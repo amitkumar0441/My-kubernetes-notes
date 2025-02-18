@@ -1,0 +1,12 @@
+apiVersion: autoscaling.k8s.io/v1
+kind: VerticalPodAutoscaler
+metadata:
+  name: mysql-vpa
+  namespace: vpa  # Ensure this is the same namespace as your StatefulSet
+spec:
+  targetRef:
+    apiVersion: apps/v1
+    kind: StatefulSet
+    name: firststatefulset  # This matches your StatefulSet name
+  updatePolicy:
+    updateMode: "Auto"  # This will automatically update the resource requests based on usage

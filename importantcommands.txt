@@ -59,4 +59,13 @@
       a) create a seperate namespace for hpa purpose.
       b) create hpa manifest file and apply it. 
 
-22) # 
+22) # VPA :- only for stateful application and under it the size of single pod increased not multiple replicas will be created. 
+first install vpa :- 
+git clone https://github.com/kubernetes/autoscaler.git
+cd autoscaler-master/vertical-pod-autoscaler 
+./hack/vpa-up.sh
+kubectl get pods -n kube-system | grep vpa    - to check vpa has been installed or not. 
+
+
+
+
