@@ -29,7 +29,8 @@
 
 14) # kubectl patch command :- for modify already running existing manifest file , like :- service.yaml 
 
-15) # kubectl port-forward svc/servicename 5000:5000 --address=0.0.0.0 &   - only for Nodeport type. 
+15) # PORT_FORWARDING :-   kubectl port-forward svc/servicename 5000:5000 --address=0.0.0.0 &   - only for Nodeport type. 
+                           kubectl port-forward svc/myfirstservice 8080:80 -n mycustomnamespace  &
 
 16) # In the case of argocd, you have to delete application in order to delete all components. 
 
@@ -67,5 +68,26 @@ cd autoscaler-master/vertical-pod-autoscaler
 kubectl get pods -n kube-system | grep vpa    - to check vpa has been installed or not. 
 
 
+23) # Node Affinity :- 
+To Schedule a particular pod on a specific worker node 
+Taint is opposite of Node affinity. 
 
+24) # RBAC :-Role base access control. 
+Resources :- deployment , pod, service 
+verbs :- get,  apply, delete, create , patch, watch
+Main component :-  Roles,  Role Binding, Service account , user 
+Namespace level role and Cluster level role. 
+Important commands :-
 
+kubectl auth whoami 
+default user :- kubernetes-admin
+kubectl auth can-i get pods 
+kubectl auth can-i get pods -n apachenamespace 
+kubectl auth can-i get pods --as=system:serviceaccount:mycustomnamespace:amit-sa -n mycustomnamespace
+
+* create a role :- 
+-----------------------kubectl get roles -n mycustomnamespace 
+* create a service account :- 
+-----------------------kubectl get serviceaccounts -n mycustomnamespace 
+* create a role bindig :- 
+-----------------------kubectl get rolebinding -n mycustomnamespace 
