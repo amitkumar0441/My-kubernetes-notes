@@ -91,3 +91,8 @@ kubectl auth can-i get pods --as=system:serviceaccount:mycustomnamespace:amit-sa
 -----------------------kubectl get serviceaccounts -n mycustomnamespace 
 * create a role bindig :- 
 -----------------------kubectl get rolebinding -n mycustomnamespace 
+
+
+25) # KUBECONFIG :- 
+The kubeconfig file is a configuration file used by kubectl to connect to and interact with Kubernetes clusters.
+It contains important information about the cluster and user credentials, allowing kubectl to access the cluster and perform operations.
