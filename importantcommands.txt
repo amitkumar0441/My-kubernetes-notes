@@ -108,3 +108,25 @@ Interview question :- Kubernetes dashboard runs on which default port no :- 8001
 26) # KUBECONFIG :- 
 The kubeconfig file is a configuration file used by kubectl to connect to and interact with Kubernetes clusters.
 It contains important information about the cluster and user credentials, allowing kubectl to access the cluster and perform operations.
+
+
+
+27) # CUSTOM RESOURCE DEFINITION :- 
+use when you want to create your own resource for kubernetes. 
+
+28) # HELM :- Package manager for kubernetes. 
+     * Helm charts:-
+       A Helm Chart is a package that contains all the necessary Kubernetes resources (YAML files) to deploy an application. 
+     * install helm :- from official sites 
+     * helm version
+     * create helm charts :- helm create nginx-helm
+       cd nginx-helm ------------------------charts, templates, values.yaml--------templates ke andar sari manifest file hote hai and values fetch ki jate 
+       hai from values.yaml se. 
+     * values enter karo 
+     * cd ..
+     * helm package nginx-helm - package ban jayega.
+     * helm install dev-nginx nginx-helm -n dev-nginx --create-namespace 
+     * helm uninstall dev-nginx 
+     * other concect :- upgrade to new version, and rollback to previous version. 
+     
+
