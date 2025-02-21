@@ -92,7 +92,19 @@ kubectl auth can-i get pods --as=system:serviceaccount:mycustomnamespace:amit-sa
 * create a role bindig :- 
 -----------------------kubectl get rolebinding -n mycustomnamespace 
 
+25) GOAL :- I WANT TO CREATE A KUBERNETES DASHBOARD AND WANT TO ACCESS IT BY A USER :- An example of cluster level roles. 
+* Required kubernetes dashboard manifest file - clone from this repo :- 
+  kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.7.0/aio/deploy/recommended.yaml
+  you will get a namespace :- [kubernetes-dashboard]  , a by default clusterrole has been made. 
+* create service account for user. 
+* create clusterrolebinding. 
+* generate token for the user :- 
+* kubectl proxy --port-8001 --address=0.0.0.0  --------------------------------------- Command to run the kubernetes dashboard for https 
+* kubectl proxy :- for localhost purpose  
+* use this link to access dashboard :- 
+http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/
+Interview question :- Kubernetes dashboard runs on which default port no :- 8001 
 
-25) # KUBECONFIG :- 
+26) # KUBECONFIG :- 
 The kubeconfig file is a configuration file used by kubectl to connect to and interact with Kubernetes clusters.
 It contains important information about the cluster and user credentials, allowing kubectl to access the cluster and perform operations.
