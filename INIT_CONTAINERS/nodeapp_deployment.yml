@@ -1,0 +1,45 @@
+# Node.js App Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodejs-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nodejs-app
+  template:
+    metadata:
+      labels:
+        app: nodejs-app
+    spec:
+      initContainers:
+        - name: wait-for-mongo
+          image: busybox
+          command: ['sh', '-c', 'until nc -z mongodb-service 27017; do echo "Waiting for MongoDB..."; sleep 5; done']
+      containers:
+        - name: nodejs-app
+          image: amitkumar0441/nodeapp-with-mongodb:1
+          ports:
+            - containerPort: 3000
+          env:
+            - name: MONGO_URL
+              value: "mongodb://mongodb-service:27017/mydatabase"
+      imagePullSecrets:
+        - name: my-registry-secret  # Move imagePullSecrets here, under spec
+
+
+---
+# Node.js App Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: nodejs-service
+spec:
+  selector:
+    app: nodejs-app
+  ports:
+  - protocol: TCP
+    port: 3000
+    targetPort: 3000
+  type: NodePort

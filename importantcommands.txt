@@ -131,5 +131,11 @@ use when you want to create your own resource for kubernetes.
      * helm uninstall dev-nginx 
      * upgrade :- helm upgrade dev-dockerapp dockerapp-helm -n dev-dockerapp 
      * helm rollback dev-dockerapp 1 -n dev-dockerapp 
+
+
+29) # INIT CONTAINERS :- 
+     * Init container is a container that runs before main container of application. 
+     * 
+
      
 
