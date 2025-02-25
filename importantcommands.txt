@@ -30,7 +30,7 @@
 14) # kubectl patch command :- for modify already running existing manifest file , like :- service.yaml 
 
 15) # PORT_FORWARDING :-   kubectl port-forward svc/servicename 5000:5000 --address=0.0.0.0 &   - only for Nodeport type. 
-                           kubectl port-forward svc/myfirstservice 8080:80 -n mycustomnamespace  &
+                           kubectl port-forward svc/myfirstservice 8080:80 --address=0.0.0.0 -n mycustomnamespace  &
 
 16) # In the case of argocd, you have to delete application in order to delete all components. 
 
@@ -122,11 +122,14 @@ use when you want to create your own resource for kubernetes.
      * create helm charts :- helm create nginx-helm
        cd nginx-helm ------------------------charts, templates, values.yaml--------templates ke andar sari manifest file hote hai and values fetch ki jate 
        hai from values.yaml se. 
+     * nano service.yaml :- targetPort: {{ .Values.service.port }}
+     * values.yaml :- 
      * values enter karo 
      * cd ..
      * helm package nginx-helm - package ban jayega.
      * helm install dev-nginx nginx-helm -n dev-nginx --create-namespace 
      * helm uninstall dev-nginx 
-     * other concect :- upgrade to new version, and rollback to previous version. 
+     * upgrade :- helm upgrade dev-dockerapp dockerapp-helm -n dev-dockerapp 
+     * helm rollback dev-dockerapp 1 -n dev-dockerapp 
      
 
