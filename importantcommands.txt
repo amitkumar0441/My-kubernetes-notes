@@ -135,7 +135,17 @@ use when you want to create your own resource for kubernetes.
 
 29) # INIT CONTAINERS :- 
      * Init container is a container that runs before main container of application. 
-     * 
+     Basically, used when there is database container in project scenario. 
+
+
+
+30) # Service Mesh :- 
+What is the use of service mesh in microservices ? 
+We use service mesh for making communication more efficient, secure, and manageable. It doesn't mean that without service mesh microservices can't communicate 
+, They can. 
+Major tool for service mesh for kubernetes cluster :- istio 
+
+
 
      
 
